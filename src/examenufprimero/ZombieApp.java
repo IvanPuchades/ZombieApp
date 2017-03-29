@@ -25,17 +25,20 @@ public class ZombieApp {
         System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
         
         String nombre = pedirCadena("Como me llamo?");
-        int anoConversion = pedirEntero("Hace cuanto que me he convertido en zombie? 0 - 4");
-        if((anoConversion > 5)|| (anoConversion < 0)){
+        int anoConversion = pedirEntero("Hace cuantos años que me he convertido en zombie? 0 - 5");
+        if((anoConversion > 0)|| (anoConversion < 5)){
             System.out.println("Tengo que tener entre 0 y 5 años");
             
         }else {
             int nivelComunidad = pedirEntero("Introduce el nivel que tengo en la comunidad");
-            int numPersonasConvertidas = pedirEntero("A cuantas personas he convertido en zombie?");
-            int anosRestantes = 0;
-            anosRestantes = 5 - zombie1.getAnoConversion();
-            System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
-        }
+            if ((nivelComunidad < 1)||(nivelComunidad > 10)){
+                System.out.println("Tengo que ser nivel 1 minimo y nivel 10 maximo");
+            }else {
+                int numPersonasConvertidas = pedirEntero("A cuantas personas he convertido en zombie?");
+                System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
+        
+            }
+            }
         
 //        List<Integer> mejorAno = pedirEntero("");
 
