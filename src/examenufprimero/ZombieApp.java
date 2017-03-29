@@ -20,7 +20,9 @@ public class ZombieApp {
     
     public static void main(String[] args) {
         
-        Zombie zombie1 = new Zombie("Alfredo", 2, 5, 15);
+        Zombie zombie1 = new Zombie("Alfred", 2, 5, 15);
+        int anosRestantes = 5 - zombie1.getAnoConversion();
+        System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
         
         String nombre = pedirCadena("Como me llamo?");
         int anoConversion = pedirEntero("Hace cuanto que me he convertido en zombie? 0 - 4");
