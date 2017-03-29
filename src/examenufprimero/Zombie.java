@@ -15,7 +15,7 @@ import java.util.List;
 public class Zombie {
     
     private String nombre = "";
-    private LocalDate anoConversion;
+    private int anoConversion;
     private int nivelComunidad;
     private List<Integer> numPersonasConvertidasPorAno;
  
@@ -23,13 +23,13 @@ public class Zombie {
     public Zombie() {
     }
 
-    public Zombie(String nombre, LocalDate anoConversion, int nivelComunidad, int numPersonasConvertidas) {
+    public Zombie(String nombre, int anoConversion, int nivelComunidad, int numPersonasConvertidas) {
         this.nombre = nombre;
         this.anoConversion = anoConversion;
         this.nivelComunidad = nivelComunidad;
     }
     
-    public Zombie(String nombre, LocalDate anoConversion, int nivelComunidad, int numPersonasConvertidas, List<Integer> mejorAno, int maxAñoConversiones, double mediaConversiones, int totalConversiones, boolean haConvertido, boolean esJefe) {
+    public Zombie(String nombre, int anoConversion, int nivelComunidad, int numPersonasConvertidas, List<Integer> mejorAno, int maxAñoConversiones, double mediaConversiones, int totalConversiones, boolean haConvertido, boolean esJefe) {
         this.nombre = nombre;
         this.anoConversion = anoConversion;
         this.nivelComunidad = nivelComunidad;
@@ -43,11 +43,11 @@ public class Zombie {
         this.nombre = nombre;
     }
 
-    public LocalDate getAnoConversion() {
+    public int getAnoConversion() {
         return anoConversion;
     }
 
-    public void setAnoConversion(LocalDate anoConversion) {
+    public void setAnoConversion(int anoConversion) {
         this.anoConversion = anoConversion;
     }
 

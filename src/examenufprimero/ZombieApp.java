@@ -20,19 +20,26 @@ public class ZombieApp {
     
     public static void main(String[] args) {
         
-        Zombie zombie1 = new Zombie("Alfredo", LocalDate.of(1990, Month.MARCH, 20), 5, 15);
+        Zombie zombie1 = new Zombie("Alfredo", 2, 5, 15);
         
         String nombre = pedirCadena("Como me llamo?");
-        int diaConversion = pedirEntero("Introduce el dia de mi conversion");
-        int mesConversion = pedirEntero("Introduce el mes de mi conversion");
-        int anoConversion = pedirEntero("Introduce el año de mi conversion");
-        int nivelComunidad = pedirEntero("Introduce el nivel que tengo en la comunidad");
-        int numPersonasConvertidas = pedirEntero("A cuantas personas he convertido en zombie?");
+        int anoConversion = pedirEntero("Hace cuanto que me he convertido en zombie? 0 - 4");
+        if((anoConversion > 5)|| (anoConversion < 0)){
+            System.out.println("Tengo que tener entre 0 y 5 años");
+            
+        }else {
+            int nivelComunidad = pedirEntero("Introduce el nivel que tengo en la comunidad");
+            int numPersonasConvertidas = pedirEntero("A cuantas personas he convertido en zombie?");
+            int anosRestantes = 0;
+            anosRestantes = 5 - zombie1.getAnoConversion();
+            System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
+        }
+        
 //        List<Integer> mejorAno = pedirEntero("");
 
         Zombie zombie2 = new Zombie(nombre,nivelComunidad,numPersonasConvertidas);
         
-        System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo x años de conversion y me quedan x años para convertirme en una bonita flor.");
+        
         
         
         
