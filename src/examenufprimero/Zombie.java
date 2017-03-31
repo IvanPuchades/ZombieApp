@@ -5,8 +5,9 @@
  */
 package examenufprimero;
 
+import com.sun.javafx.font.FontConstants;
 import java.time.LocalDate;
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  *
@@ -14,27 +15,33 @@ import java.util.List;
  */
 public class Zombie {
     
-    private String nombre = "";
+    private String nombre;
     private int anoConversion;
     private int nivelComunidad;
-    private List<Integer> numPersonasConvertidasPorAno;
+    private ArrayList<Integer> numPersonasConvertidasPorAno;
  
 
     public Zombie() {
+        nombre = "";
+        anoConversion = 0;
+        nivelComunidad = 1;
+        numPersonasConvertidasPorAno = new ArrayList<>();
     }
 
-    public Zombie(String nombre, int anoConversion, int nivelComunidad, int numPersonasConvertidas) {
+    public Zombie(String nombre, int anoConversion, int nivelComunidad) {
         this.nombre = nombre;
         this.anoConversion = anoConversion;
         this.nivelComunidad = nivelComunidad;
+    }
+
+    public ArrayList<Integer> getNumPersonasConvertidasPorAno() {
+        return numPersonasConvertidasPorAno;
+    }
+
+    public void setNumPersonasConvertidasPorAno(ArrayList<Integer> numPersonasConvertidasPorAno) {
+        this.numPersonasConvertidasPorAno = numPersonasConvertidasPorAno;
     }
     
-    public Zombie(String nombre, int anoConversion, int nivelComunidad, int numPersonasConvertidas, List<Integer> mejorAno, int maxAñoConversiones, double mediaConversiones, int totalConversiones, boolean haConvertido, boolean esJefe) {
-        this.nombre = nombre;
-        this.anoConversion = anoConversion;
-        this.nivelComunidad = nivelComunidad;
-    }
-
     public String getNombre() {
         return nombre;
     }
@@ -59,26 +66,63 @@ public class Zombie {
         this.nivelComunidad = nivelComunidad;
     }
     
-    public static int[] mejorAno(int a) {
-        int num[]=new int [5];
-        for (int i=0; i<num.length; i++){
-            num[i] = a;
-            a++;
+    public int mejorAnyo() {
+        int anyo = 0;
+        int maxPersonasConvertidas = 0;
+        for (int i=0; i < numPersonasConvertidasPorAno.size(); i++) {
+            // Si el nº de personas que hay en la posición i del array es mayor que el máximo que tenemos guardado
+            if (numPersonasConvertidasPorAno.get(i) > maxPersonasConvertidas) {
+                // Ahora el máximo es lo que hay en la posición actual del array
+                maxPersonasConvertidas = numPersonasConvertidasPorAno.get(i);
+                // El año es la posición donde estamos + 1 (pq es de 1 a 5)
+                anyo = i+1;
+            }
         }
-        return num;
+        return anyo;
     }
     
-    public static boolean haConvertido(){
+    public int maxConversiones(){
+        int maxPersonasConvertidas = 0;
+        for (int i=0; i < numPersonasConvertidasPorAno.size(); i++) {
+            // Si el nº de personas que hay en la posición i del array es mayor que el máximo que tenemos guardado
+            if (numPersonasConvertidasPorAno.get(i) > maxPersonasConvertidas) {
+                // Ahora el máximo es lo que hay en la posición actual del array
+                maxPersonasConvertidas = numPersonasConvertidasPorAno.get(i);
+
+            }
+        }
+        return maxPersonasConvertidas;
+    }
+    
+//    public Long mediaConversiones(){
+//        
+//    }
+    
+    public int totalConversiones(){
+        int personasConvertidas = 0;
+        int personasTotalesConvertidas = 0;
+        for (int i=0; i < numPersonasConvertidasPorAno.size(); i++) {
+            // Si el nº de personas que hay en la posición i del array es mayor que el máximo que tenemos guardado                
+            personasTotalesConvertidas =  personasTotalesConvertidas + personasConvertidas;
+                
+
+            
+        }
+        return personasTotalesConvertidas;
+    }
+    
+    public double mediaConversiones(){
+        double media = 0.00;
+        media = totalConversiones()/numPersonasConvertidasPorAno.size();
         
+        
+        return media;
     }
     
-    
-    
-    
-    @Override
-    public String toString() {
-        return "Zombie{" + "nombre=" + nombre + ", a\u00f1oConversion=" + anoConversion + ", nivelComunidad=" + nivelComunidad + ", numPersonasConvertidas=" + numPersonasConvertidas + '}';
-    }
+//    public boolean haConvertido(){
+//      
+//    }
+
     
     
 }
