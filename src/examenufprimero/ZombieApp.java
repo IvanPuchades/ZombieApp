@@ -8,6 +8,8 @@ package examenufprimero;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 
 /**
@@ -22,24 +24,24 @@ public class ZombieApp {
         int anosConversion = 2017 - zombie1.getAnoConversion();
         int anosRestantes = zombie1.getAnoConversion() + 5 - anosConversion;
         System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
-        
-        
-        
+               
         
         String nombre = pedirCadena("Como me llamo?");
         int  calculoAños = 0;
+        int anoConversionZ2 = pedirEntero("En que año me convertí en zombie? ");
         do{
-            int anoConversion = pedirEntero("En que año me convertí en zombie? ");
-            calculoAños = 2017 - anoConversion;
+            
+            int añoActual = LocalDate.now().getYear();
+            calculoAños = añoActual - anoConversionZ2;
             
             if(calculoAños>5){
                int calculoAñosRestantes = calculoAños - 5;
                 System.out.println("Hace ya "+calculoAñosRestantes+" años que me he convertido en una flor");
             }else if(calculoAños<0){
                 int calculoAnosNegativos = 0 - calculoAños;
-                System.out.println("No vengo del futuro, estamos en el año 2017, te has pasado por "+calculoAnosNegativos+" años");
+                System.out.println("No vengo del futuro, estamos en el año"+añoActual+", te has pasado por "+calculoAnosNegativos+" años");
             }
-        }while(calculoAños>5 && calculoAños<0);   
+        }while(calculoAños>5 || calculoAños<0);   
             
              //      if(calculoAños > 5){
              //      int calculoAñosRestantes = 0;
@@ -53,14 +55,26 @@ public class ZombieApp {
 
             //} else {
             int nivelComunidad = pedirEntero("Introduce el nivel que tengo en la comunidad");
-            if ((nivelComunidad < 1)||(nivelComunidad > 10)){
-               // System.out.println("Tengo que ser nivel 1 minimo y nivel 10 maximo");
-            }else {
-                int numPersonasConvertidas = pedirEntero("A cuantas personas he convertido en zombie?");
-                Zombie zombie2 = new Zombie();
+            do{
+               if ((nivelComunidad < 1)||(nivelComunidad > 10)){
+                System.out.println("Tengo que ser nivel 1 minimo y nivel 10 maximo");
+            }
+           
+            }while (nivelComunidad <1 || nivelComunidad > 10); 
+            
+                ArrayList<Integer> conversionesPorAno = new ArrayList<>(5);
+                
+                for (int i = 0; i < calculoAños; i++){
+                    Integer conversiones = pedirEntero("Introduce el numero de conversiones del año "+anoConversionZ2 + i);
+                    conversionesPorAno.add(conversiones);
+                }
+            
+                Zombie zombie2 = new Zombie(nombre, anoConversionZ2, nivelComunidad, conversionesPorAno);
+//                Zombie zombie2 = new Zombie(nombre,anosConversion,nivelComunidad, numPersonasConvertidas);
               //  System.out.println("Mi nombre: "+zombie2);
           //  }
-        }
+                datosZombie(zombie2);
+            
         
 //        List<Integer> mejorAno = pedirEntero("");
 
@@ -105,21 +119,13 @@ public class ZombieApp {
         } while (error);
         return respuesta;
     }
-        public String datosZombie(Zombie z) {
-        String jefe = "No";
-        String convertido = "No";
-        if(z.getNivelComunidad()>7){
-            jefe = "Si";
-        }
-        if(z.totalConversiones()>0){
-            convertido = "Si";
-        }
+        public static String datosZombie(Zombie z) {      
         return  "Mi nombre: " + z.getNombre() +"\n"+
                 "Mi mejor año: " + z.mejorAnyo()+ "\n"+
                 "Máximo de conversiones en un año: " + z.maxConversiones() +"\n"+
                 "Media de conversiones por año: "+ z.mediaConversiones() +"\n"+ 
                 "Total de conversiones a lo largo de mi vida:" + z.totalConversiones() + "\n"+
-                "¿He convertido alguna vez?"+ convertido+"\n"+
-                "¿Soy un jefe?" + jefe+"\n";
+                "¿He convertido alguna vez?"+ z.haConvertido()+"\n"+
+                "¿Soy un jefe?" + z.esJefe()+"\n";
     }
 }

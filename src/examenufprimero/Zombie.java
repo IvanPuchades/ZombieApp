@@ -26,6 +26,7 @@ public class Zombie {
         anoConversion = 0;
         nivelComunidad = 1;
         numPersonasConvertidasPorAno = new ArrayList<>();
+        
     }
 
     public Zombie(String nombre, int anoConversion, int nivelComunidad) {
@@ -33,6 +34,14 @@ public class Zombie {
         this.anoConversion = anoConversion;
         this.nivelComunidad = nivelComunidad;
     }
+
+    Zombie(String nombre, int anoConversionZ2, int nivelComunidad, ArrayList<Integer> numPersonasConvertidas) {
+        this.nombre = nombre;
+        this.anoConversion = anoConversionZ2;
+        this.nivelComunidad = nivelComunidad;
+        this.numPersonasConvertidasPorAno = numPersonasConvertidas;
+    }
+    
 
     public ArrayList<Integer> getNumPersonasConvertidasPorAno() {
         return numPersonasConvertidasPorAno;
@@ -117,6 +126,22 @@ public class Zombie {
         
         
         return media;
+    }
+    
+    public boolean haConvertido(){
+        Boolean convertido = false;
+        if(totalConversiones()>0){
+            convertido = true;
+        }
+        return convertido;
+    }
+    
+    public boolean esJefe(){
+        Boolean jefe = false ;
+        if(getNivelComunidad()>=7){
+            jefe = true;
+        }
+        return jefe;
     }
     
 //    public boolean haConvertido(){
