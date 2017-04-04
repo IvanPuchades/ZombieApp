@@ -83,8 +83,8 @@ public class Zombie {
             if (numPersonasConvertidasPorAno.get(i) > maxPersonasConvertidas) {
                 // Ahora el máximo es lo que hay en la posición actual del array
                 maxPersonasConvertidas = numPersonasConvertidasPorAno.get(i);
-                // El año es la posición donde estamos + 1 (pq es de 1 a 5)
-                anyo = i+1;
+                // El año es la posición donde estamos + 1 (porque es de 1 a 5)
+                anyo = i;
             }
         }
         return anyo;
@@ -108,14 +108,11 @@ public class Zombie {
 //    }
     
     public int totalConversiones(){
-        int personasConvertidas = 0;
+        int conversiones = 0;
         int personasTotalesConvertidas = 0;
         for (int i=0; i < numPersonasConvertidasPorAno.size(); i++) {
-            // Si el nº de personas que hay en la posición i del array es mayor que el máximo que tenemos guardado                
-            personasTotalesConvertidas =  personasTotalesConvertidas + personasConvertidas;
-                
-
-            
+            //
+            personasTotalesConvertidas =  personasTotalesConvertidas + conversiones;    
         }
         return personasTotalesConvertidas;
     }

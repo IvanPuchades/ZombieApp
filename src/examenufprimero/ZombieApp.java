@@ -20,42 +20,50 @@ public class ZombieApp {
     
     public static void main(String[] args) {
         
-        Zombie zombie1 = new Zombie("Alfred", 2, 2015);
+        Zombie zombie1 = new Zombie("Alfred", 2015, 2);
         int anosConversion = 2017 - zombie1.getAnoConversion();
-        int anosRestantes = zombie1.getAnoConversion() + 5 - anosConversion;
-        System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+zombie1.getAnoConversion()+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
+        int anosRestantes =  5 - anosConversion;
+        System.out.println("Hola, soy \""+zombie1.getNombre()+"\", tengo "+anosConversion+" años de conversion y me quedan "+anosRestantes+" años para convertirme en una bonita flor.");
                
         
         String nombre = pedirCadena("Como me llamo?");
+        
+        
         int  calculoAños = 0;
-        int anoConversionZ2 = pedirEntero("En que año me convertí en zombie? ");
-        do{
+        int anoConversionZ2 = 0;
+        int anoActual = 0;
+        do{    
             
-            int añoActual = LocalDate.now().getYear();
-            calculoAños = añoActual - anoConversionZ2;
+            do{
+                
+                anoConversionZ2 = pedirEntero("En que año me convertí en zombie? ");
+                
+                
+                anoActual = 2017;
+                calculoAños = anoActual - anoConversionZ2;
+                if(anoConversionZ2 < 0){
+                   System.out.println("No puedes introducir un año negativo");
+
+                }
+               
+            }while(anoConversionZ2 < 0);
             
             if(calculoAños>5){
                int calculoAñosRestantes = calculoAños - 5;
                 System.out.println("Hace ya "+calculoAñosRestantes+" años que me he convertido en una flor");
             }else if(calculoAños<0){
                 int calculoAnosNegativos = 0 - calculoAños;
-                System.out.println("No vengo del futuro, estamos en el año"+añoActual+", te has pasado por "+calculoAnosNegativos+" años");
-            }
+                System.out.println("No vengo del futuro, estamos en el año"+anoActual+", te has pasado por "+calculoAnosNegativos+" años");
+            } 
         }while(calculoAños>5 || calculoAños<0);   
-            
-             //      if(calculoAños > 5){
-             //      int calculoAñosRestantes = 0;
-             //      calculoAñosRestantes = calculoAños - 5;
-             //  System.out.println("Hace ya "+calculoAñosRestantes+" años que me he convertido en una flor");
-            
-            //}else if(calculoAños < 0){
-            //int calculoAnosNegativos = 0 - calculoAños ;
-  
-           // System.out.println("No vengo del futuro, estamos en el año 2017, te has pasado por "+calculoAnosNegativos+" años");
 
-            //} else {
-            int nivelComunidad = pedirEntero("Introduce el nivel que tengo en la comunidad");
+            int nivelComunidad = 0;
             do{
+                
+                
+               nivelComunidad = pedirEntero("Introduce el nivel que tengo en la comunidad");
+               
+               
                if ((nivelComunidad < 1)||(nivelComunidad > 10)){
                 System.out.println("Tengo que ser nivel 1 minimo y nivel 10 maximo");
             }
@@ -65,7 +73,8 @@ public class ZombieApp {
                 ArrayList<Integer> conversionesPorAno = new ArrayList<>(5);
                 
                 for (int i = 0; i < calculoAños; i++){
-                    Integer conversiones = pedirEntero("Introduce el numero de conversiones del año "+anoConversionZ2 + i);
+                    anoActual = anoConversionZ2 + i;
+                    Integer conversiones = pedirEntero("Introduce el numero de conversiones del año "+anoActual);
                     conversionesPorAno.add(conversiones);
                 }
             
@@ -73,7 +82,7 @@ public class ZombieApp {
 //                Zombie zombie2 = new Zombie(nombre,anosConversion,nivelComunidad, numPersonasConvertidas);
               //  System.out.println("Mi nombre: "+zombie2);
           //  }
-                datosZombie(zombie2);
+                System.out.println(datosZombie(zombie2));
             
         
 //        List<Integer> mejorAno = pedirEntero("");
@@ -119,13 +128,27 @@ public class ZombieApp {
         } while (error);
         return respuesta;
     }
-        public static String datosZombie(Zombie z) {      
+        public static String datosZombie(Zombie z) {  
+            String afirmar = "";
+            if (z.esJefe() == true){
+                afirmar = "Si";
+            }else {
+                afirmar = "No";
+            }
+            String afirmarConvertidos = "";
+            if (z.haConvertido() == true){
+                afirmarConvertidos = "Si";
+            }else {
+                afirmarConvertidos = "No";
+            }  
+            
+            int mejorAñoActual = z.getAnoConversion() + z.mejorAnyo();
         return  "Mi nombre: " + z.getNombre() +"\n"+
-                "Mi mejor año: " + z.mejorAnyo()+ "\n"+
-                "Máximo de conversiones en un año: " + z.maxConversiones() +"\n"+
+                "Mi mejor año: " + mejorAñoActual+ "\n"+
+                "Máximo de conversiones en un año: " + z.maxConversiones()+"\n"+
                 "Media de conversiones por año: "+ z.mediaConversiones() +"\n"+ 
-                "Total de conversiones a lo largo de mi vida:" + z.totalConversiones() + "\n"+
-                "¿He convertido alguna vez?"+ z.haConvertido()+"\n"+
-                "¿Soy un jefe?" + z.esJefe()+"\n";
+                "Total de conversiones a lo largo de mi vida: " + z.totalConversiones() + "\n"+
+                "¿He convertido alguna vez? "+ afirmarConvertidos+"\n"+
+                "¿Soy un jefe? " + afirmar+"\n";
     }
 }
