@@ -108,18 +108,18 @@ public class Zombie {
 //    }
     
     public int totalConversiones(){
-        int conversiones = 0;
+        
         int personasTotalesConvertidas = 0;
         for (int i=0; i < numPersonasConvertidasPorAno.size(); i++) {
             //
-            personasTotalesConvertidas =  personasTotalesConvertidas + conversiones;    
+            personasTotalesConvertidas =  personasTotalesConvertidas + numPersonasConvertidasPorAno.get(i);    
         }
         return personasTotalesConvertidas;
     }
     
     public double mediaConversiones(){
         double media = 0.00;
-        media = totalConversiones()/numPersonasConvertidasPorAno.size();
+        media = totalConversiones()/ (double) numPersonasConvertidasPorAno.size();
         
         
         return media;

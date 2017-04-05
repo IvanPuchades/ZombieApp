@@ -74,9 +74,19 @@ public class ZombieApp {
                 
                 for (int i = 0; i < calculoAños; i++){
                     anoActual = anoConversionZ2 + i;
-                    Integer conversiones = pedirEntero("Introduce el numero de conversiones del año "+anoActual);
+                    int conversiones = 0;
+                    do {
+                        conversiones = pedirEntero("Introduce el numero de conversiones del año "+anoActual);
+                        if (conversiones < 0){
+                        System.out.println("No puedes desconvertir de zombies a humanos, los zombies tenemos un principio!!! (No pongas numeros negativos)");
+
+                        }
+
+                    }while(conversiones < 0);
                     conversionesPorAno.add(conversiones);
+
                 }
+                
             
                 Zombie zombie2 = new Zombie(nombre, anoConversionZ2, nivelComunidad, conversionesPorAno);
 //                Zombie zombie2 = new Zombie(nombre,anosConversion,nivelComunidad, numPersonasConvertidas);
