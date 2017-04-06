@@ -20,7 +20,7 @@ public class Zombie {
     private int nivelComunidad;
     private ArrayList<Integer> numPersonasConvertidasPorAno;
  
-
+// Creamos el constructor con los parametros Basicos
     public Zombie() {
         nombre = "";
         anoConversion = 0;
@@ -29,12 +29,14 @@ public class Zombie {
         
     }
 
+ //Creamos el segundo constructor con parametros Basicos
     public Zombie(String nombre, int anoConversion, int nivelComunidad) {
         this.nombre = nombre;
         this.anoConversion = anoConversion;
         this.nivelComunidad = nivelComunidad;
     }
 
+    //Creamos el constructor con los carametros del zombie 2
     Zombie(String nombre, int anoConversionZ2, int nivelComunidad, ArrayList<Integer> numPersonasConvertidas) {
         this.nombre = nombre;
         this.anoConversion = anoConversionZ2;
@@ -42,7 +44,7 @@ public class Zombie {
         this.numPersonasConvertidasPorAno = numPersonasConvertidas;
     }
     
-
+    // Creamos los getters y los setters.
     public ArrayList<Integer> getNumPersonasConvertidasPorAno() {
         return numPersonasConvertidasPorAno;
     }
@@ -75,6 +77,8 @@ public class Zombie {
         this.nivelComunidad = nivelComunidad;
     }
     
+    
+    //Creamos la función MejorAnyo, que mostrará el año que mas han convertido los zombies
     public int mejorAnyo() {
         int anyo = 0;
         int maxPersonasConvertidas = 0;
@@ -90,6 +94,7 @@ public class Zombie {
         return anyo;
     }
     
+    //Creamos la funcion MaxConversiones, que mostrará la cantidad maxima de conversiones que ha realizado en total a todos los años que ha vivido
     public int maxConversiones(){
         int maxPersonasConvertidas = 0;
         for (int i=0; i < numPersonasConvertidasPorAno.size(); i++) {
@@ -107,6 +112,7 @@ public class Zombie {
 //        
 //    }
     
+    //Creamos la funcion TotalConversiones, que mostrará el numero total de conversiones que ha realizado un zombie en todos los años
     public int totalConversiones(){
         
         int personasTotalesConvertidas = 0;
@@ -117,6 +123,7 @@ public class Zombie {
         return personasTotalesConvertidas;
     }
     
+    //Creamos la funcion MediaConversiones, que mostrará la media de conversiones totales de todos los años de un zombie
     public double mediaConversiones(){
         double media = 0.00;
         media = totalConversiones()/ (double) numPersonasConvertidasPorAno.size();
@@ -125,6 +132,7 @@ public class Zombie {
         return media;
     }
     
+    //Creamos la funcion HaConvertido, que te devuelve si ha convertido a alguien o no en toda su vida
     public boolean haConvertido(){
         Boolean convertido = false;
         if(totalConversiones()>0){
@@ -133,6 +141,7 @@ public class Zombie {
         return convertido;
     }
     
+    //Creamos la funcion EsJefe, que te devuelve si el nivel de la comunidad es mayor o igual a 7
     public boolean esJefe(){
         Boolean jefe = false ;
         if(getNivelComunidad()>=7){
@@ -140,11 +149,5 @@ public class Zombie {
         }
         return jefe;
     }
-    
-//    public boolean haConvertido(){
-//      
-//    }
-
-    
     
 }
